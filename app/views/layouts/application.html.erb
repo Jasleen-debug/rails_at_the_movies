@@ -7,10 +7,16 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <section class="section">
+      <div class="container">
+        <h1 class="title is-1">Top Movies From IMDB</h1>
+      </div>
+      <%= yield %>
+    </section>
   </body>
 </html>
