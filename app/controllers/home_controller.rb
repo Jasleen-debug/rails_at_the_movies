@@ -1,5 +1,8 @@
-class ProductionCompaniesController < ApplicationController
+class HomeController < ApplicationController
   def index
+    @movies = Movie.includes(:production_company)
+                   .order("average_vote DESC")
+                   .limit(10)
     @production_companies = ProductionCompany.select("production_companies.*")
                                              .select("COUNT(production_companies.id) as movie_count")
                                              .left_joins(:movies)
@@ -7,6 +10,4 @@ class ProductionCompaniesController < ApplicationController
                                              .order("movie_count DESC")
                                              .limit(10)
   end
-
-  def show; end
 end

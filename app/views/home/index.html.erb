@@ -1,0 +1,24 @@
+<div class="columns">
+  <div class="column">
+    <h2 class="title is-2">Top 10 Movies</h2>
+    <ol class="ml-5">
+      <% @movies.each do | movie | %>
+        <li>
+          <%= link_to movie.title, movie %>
+          <em>(<%= movie.production_company.name %>)</em>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+  <div class="column">
+    <h2 class="title is-2">Top 10 Production Companies</h2>
+    <ol class="ml-5">
+      <% @production_companies.each do | production_company | %>
+        <li>
+          <%= link_to production_company.name, production_company %>
+          <em>(<%= pluralize production_company.movie_count, "Top Movie" %>)</em>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>
