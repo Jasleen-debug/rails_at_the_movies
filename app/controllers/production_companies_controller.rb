@@ -5,8 +5,9 @@ class ProductionCompaniesController < ApplicationController
                                              .left_joins(:movies)
                                              .group("production_companies.id")
                                              .order("movie_count DESC")
-                                             .limit(10)
   end
 
-  def show; end
+  def show
+    @production_company = ProductionCompany.find(params[:id])
+  end
 end
