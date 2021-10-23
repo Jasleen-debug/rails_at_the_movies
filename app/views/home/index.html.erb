@@ -13,12 +13,7 @@
   <div class="column">
     <h2 class="title is-2">Top 10 Production Companies</h2>
     <ol class="ml-5">
-      <% @production_companies.each do | production_company | %>
-        <li>
-          <%= link_to production_company.name, production_company %>
-          <em>(<%= pluralize production_company.movie_count, "Top Movie" %>)</em>
-        </li>
-      <% end %>
+      <%= render @production_companies %>
     </ol>
   </div>
 </div>
