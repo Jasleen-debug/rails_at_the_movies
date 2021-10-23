@@ -1,1 +1,18 @@
 <h2 class="title is-2"><%= @production_company.name%></h2>
+
+<p class='mb-5'>
+  This production company made <%= @production_company.movies.count %> of the top 100 movies.
+</p>
+
+<h3 class='title is-3'>Movies Made By <%= @production_company.name %></h3>
+<ul>
+  <% @production_company.movies.each do |movie| %>
+    <li><%= link_to movie.title, movie %> with a rating of <%= movie.average_vote %> / 10</li>
+  <% end %>
+</ul>
+
+<h3 class='title is-3'>Movies Made By <%= @production_company.name %></h3>
+<ul>
+  <%= render partial: @production_company.movies, locals: { show_link: true } %>
+</ul>
+

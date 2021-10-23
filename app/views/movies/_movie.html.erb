@@ -1,0 +1,42 @@
+<h2 class="title is-2">
+  <% if show_link %>
+    <%= link_to movie.title, movie %>
+  <% else %>
+    <%= movie.title %>
+  <% end %>
+</h2>
+
+<article class="message is-dark">
+  <div class="message-header">
+    <p>Description</p>
+  </div>
+  <div class="message-body">
+    <%= movie.description %>
+  </div>
+</article>
+
+<progress class="progress is-info" value="<%= movie.average_vote %>" max=10>
+  <%= movie.average_vote %>
+</progress>
+
+<p>
+  <strong>Rating: </strong>
+  <%= movie.average_vote %>
+</p>
+
+<p>
+  <strong>Release Year: </strong>
+  <%= movie.year %>
+</p>
+
+<p>
+  <strong>Duration</strong>
+  <%= movie.duration %> minutes
+</p>
+
+<p>
+  <strong>Production Company: </strong>
+  <%= link_to movie.production_company.name, movie.production_company %>
+</p>
+
+<hr>

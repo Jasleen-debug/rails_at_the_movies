@@ -8,6 +8,7 @@
 
 require "csv"
 
+Page.delete_all
 Movie.delete_all
 
 ProductionCompany.delete_all
@@ -37,6 +38,18 @@ movies.each do |m|
     puts "Invalid Production Company: #{m['production_company']} for movie: #{m['original_title']}"
   end
 end
+
+Page.create(
+  title:     "Contact Us",
+  content:   "Want to give feedback? Email us at jk@gmail.com",
+  permalink: "contact"
+)
+
+Page.create(
+  title:     "About the data",
+  content:   "DATA WAS STOLEN FROM IMDB KAGGLE",
+  permalink: "about_the_data"
+)
 
 puts "Created #{ProductionCompany.count} Production Companies"
 

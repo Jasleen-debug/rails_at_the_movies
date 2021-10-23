@@ -17,6 +17,17 @@
         <h1 class="title is-1"><%= link_to 'Top Movies From IMDB', root_path %></h1>
       </div>
       <%= yield %>
+
+      <% if controller_name == 'home'%>
+      <p>
+      There is no place like home!!
+      </p>
+      <% else %>
+        <%= render partial: 'common/footer'%>
+      <% end %>
+
     </section>
   </body>
+
+
 </html>
