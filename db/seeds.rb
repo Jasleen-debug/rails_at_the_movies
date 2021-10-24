@@ -9,8 +9,9 @@
 require "csv"
 
 Page.delete_all
+MovieGenre.delete_all
+Genre.delete_all
 Movie.delete_all
-
 ProductionCompany.delete_all
 
 filename = Rails.root.join("db/top_movies.csv")
@@ -33,7 +34,23 @@ movies.each do |m|
       description:  m["description"],
       average_vote: m["avg_vote"]
     )
-    puts "Invalid movie #{m['original_title']}" unless movie&.valid?
+
+    if movie&.valid?
+      # if we just used the comma, we'll get a SPACE character in there. :(
+      # the map(&:string), will take all the values from the split and remove all space characters!
+      # The & symbol in this context says: collection.map { | collection_item | collection_item.strip }
+      # called a TWO PROC... takes the symbol and turns it into the above!
+      genres = m["genre"].split(",").map(&:strip)
+
+      genres.each do |genre_name|
+        genre = Genre.find_or_create_by(name: genre_name)
+
+        # since the joiner table references the other 2 tables, we can just pass the objects:
+        MovieGenre.create(movie: movie, genre: genre)
+      end
+    else
+      puts "Invalid movie #{m['original_title']}"
+    end
   else
     puts "Invalid Production Company: #{m['production_company']} for movie: #{m['original_title']}"
   end
@@ -52,5 +69,6 @@ Page.create(
 )
 
 puts "Created #{ProductionCompany.count} Production Companies"
-
 puts "Created #{Movie.count} movies."
+puts "Created #{Genre.count} Genres"
+puts "Created #{MovieGenre.count} Movie Genres"
