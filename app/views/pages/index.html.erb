@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Pages</h1>
+<h2 class="title is-4">Pages</h2>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -16,11 +16,11 @@
     <% @pages.each do |page| %>
       <tr>
         <td><%= page.title %></td>
-        <td><%= page.content %></td>
+        <td><%= truncate page.content %></td>
         <td><%= page.permalink %></td>
-        <td><%= link_to 'Show', permalink_path(page.permalink) %></td>
-        <td><%= link_to 'Edit', edit_page_path(page) %></td>
-        <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', permalink_path(page.permalink), class: 'button is-info' %></td>
+        <td><%= link_to 'Edit', edit_page_path(page), class: 'button is-warning' %></td>
+        <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-danger' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Page', new_page_path %>
+<%= link_to 'New Page', new_page_path, class: 'button is-primary' %>
