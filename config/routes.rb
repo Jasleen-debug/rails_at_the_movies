@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :pages
+  resources :pages, except: [:show]
+  get "pages/:permalink" => "pages#permalink", as: "permalink"  # using it in ruby: permalink_path
   root to: "home#index"
   resources :movies, only: %i[index show]
   resources :production_companies, only: %i[index show]
